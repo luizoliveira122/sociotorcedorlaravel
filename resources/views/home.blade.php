@@ -62,15 +62,42 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
+            background-color: #cc0000; /* Red button background */
+            text-align: center;
+            border-radius: 5px;
         }
 
         .dropdown-content a:hover {
-            background-color: #ddd;
-            color: black;
+            background-color: #810000; /* Darker red on hover */
+            color: white;
         }
 
-        .user-dropdown:hover .dropdown-content {
+        .user-dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: black;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .user-dropdown .dropdown-content.active {
             display: block;
+        }
+
+        .user-dropdown span {
+            cursor: pointer;
+        }
+
+        .user-dropdown .arrow {
+            margin-left: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .user-dropdown .arrow.active {
+            transform: rotate(180deg);
         }
 
         h3 {
@@ -189,7 +216,8 @@
         <div class="user-dropdown">
             <span>Olá, {{ Auth::user()->name }}</span><br>
             <span>{{ Auth::user()->perfil }}</span>
-            <div class="dropdown-content">
+            <span class="arrow" onclick="toggleDropdown()">▼</span>
+            <div class="dropdown-content" id="dropdown-content">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
             </div>
         </div>
@@ -269,7 +297,14 @@
             showSlide();
         }
 
-        setInterval(nextSlide, 5000);
+        setInterval(nextSlide, 3000);
+
+        function toggleDropdown() {
+            const dropdownContent = document.getElementById('dropdown-content');
+            const arrow = document.querySelector('.user-dropdown .arrow');
+            dropdownContent.classList.toggle('active');
+            arrow.classList.toggle('active');
+        }
     </script>
 
 </body>
