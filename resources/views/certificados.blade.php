@@ -97,7 +97,7 @@
         h3 {
             margin: 0;
             padding: 0;
-            text-align: center; /* Ensure text is centered */
+            text-align: center;
         }
 
         .certificate-container {
@@ -112,11 +112,11 @@
         }
 
         .certificate-title {
-            font-size: 28px;
+            font-size: 38px;
             font-weight: bold;
-            color: #333;
+            color: red;
             margin-bottom: 20px;
-            font-family: 'SerifaTriangular', Arial, sans-serif; /* Apply the Serifa Triangular font */
+            font-family: 'Chandiluna';
         }
 
         .certificate-body {
@@ -129,6 +129,10 @@
             margin-top: 30px;
             font-size: 16px;
             color: #777;
+        }
+
+        .vermelho {
+        color: red;
         }
     </style>
 </head>
@@ -151,15 +155,16 @@
     </header>
 
     <div class="certificate-container">
-        <div class="certificate-title">Certificado de Torcedor Cruzmaltino</div>
+        <div class="certificate-title">✠ Certificado de Torcedor Cruzmaltino ✠</div>
         <div class="certificate-body">
-            O(a) torcedor(a) <strong>{{ Auth::user()->name }}</strong>, nascido em <strong>{{ Auth::user()->data_nascimento->format('d/m/Y') }}</strong>, se tornou um torcedor cruzmaltino do Club de Regatas Vasco da Gama no dia <strong>{{ Auth::user()->created_at->format('d/m/Y') }}</strong>, o Clube agradece o seu apoio condicional.
+            O(a) torcedor(a) <strong>{{ Auth::user()->name }}</strong>, nascido em <strong>{{ Auth::user()->data_nascimento->format('d/m/Y') }}</strong>, se tornou um torcedor honorário do Club de Regatas Vasco da Gama no dia <strong>{{ Auth::user()->created_at->format('d/m/Y') }}</strong>, o Clube agradece o seu apoio incondicional.
         </div>
         <div class="certificate-footer">
         <img src="{{ asset('img/bandeiras.jpg') }}" alt="Logo Vasco da Gama" style="width: 100px; margin-bottom: 10px;">
             <br>
             <img src="{{ asset('img/escudo-certificado.jpg') }}" alt="Logo Vasco da Gama" style="width: 100px; margin-bottom: 10px;">
             <br>
+            <h3 class="vermelho">"NUNCA VÃO ENTENDER ESSE AMOR"</h3>
             <br>
             Clube de Regatas Vasco da Gama - Sócio Gigante
             <br>
