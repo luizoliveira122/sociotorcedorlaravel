@@ -296,6 +296,7 @@
             <option value="" disabled selected>Escolha um tema</option>
             <option value="contratacoes">Contratações</option>
             <option value="jogos">Jogos</option>
+            <option value="outros">Outros</option>
         </select>
         <textarea name="text" class="comment-box" rows="4" placeholder="Escreva seu comentário aqui..."></textarea>
 
@@ -309,6 +310,7 @@
                 <option value="" disabled selected>Escolha um tema</option>
                 <option value="contratacoes" {{ request('theme') == 'contratacoes' ? 'selected' : '' }}>Contratações</option>
                 <option value="jogos" {{ request('theme') == 'jogos' ? 'selected' : '' }}>Jogos</option>
+                <option value="outros" {{ request('theme') == 'outros' ? 'selected' : '' }}>Outros</option>
                 <option value="" {{ request('theme') == null ? 'selected' : '' }}>Todos</option>
             </select>
         </form>

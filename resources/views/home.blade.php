@@ -39,14 +39,6 @@
             position: relative;
         }
 
-        header img {
-            width: 100px;
-            height: 80px;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
         .user-dropdown {
             position: absolute;
             top: 50%;
@@ -231,6 +223,9 @@
             <span class="arrow" onclick="toggleDropdown()">▼</span>
             <div class="dropdown-content" id="dropdown-content">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </div>
     </header>
@@ -239,7 +234,9 @@
         <div class="card">
             <h4>Gerar Certificado</h4>
             <p>Crie e adiquira seu certificado de sócio gigante do Vasco da Gama.</p>
-            <button>Gerar Certificado</button>
+            <a href="{{ route('certificados.index') }}" class="btn-certificado"> <!-- Add link to Certificados -->
+                <button>Gerar Certificado</button>
+            </a>
         </div>
 
         <div class="card">

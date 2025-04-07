@@ -17,6 +17,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/comentarios', [CommentController::class, 'store'])->name('comments.store');
     Route::delete('/comentarios/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
     
+    Route::get('/certificados', function () {
+        return view('certificados'); // Render the Certificados blade
+    })->name('certificados.index');
+    
     // Logout
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
