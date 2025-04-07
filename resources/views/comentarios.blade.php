@@ -14,17 +14,18 @@
 
         body::before {
             content: "";
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('img/camisa-fundo.png'); /* Mantém a imagem */
+            background-image: url('img/camisa-fundo.png');
             background-size: cover;
             background-position: center;
-            filter: blur(10px); /* Aplica o desfoque */
-            z-index: -1; /* Coloca atrás do conteúdo */
+            filter: blur(10px);
+            z-index: -1;
         }
+
 
         header {
             background-color: black;

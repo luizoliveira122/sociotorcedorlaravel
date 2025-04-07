@@ -151,9 +151,9 @@
     </header>
 
     <div class="certificate-container">
-        <div class="certificate-title">Certificado de Torcedor Fiel</div>
+        <div class="certificate-title">Certificado de Torcedor Cruzmaltino</div>
         <div class="certificate-body">
-            O(a) torcedor(a) <strong>{{ Auth::user()->name }}</strong>, nascido em <strong>{{ Auth::user()->data_nascimento->format('d/m/Y') }}</strong>, se tornou um torcedor fiel do Club de Regatas Vasco da Gama no dia <strong>{{ Auth::user()->created_at->format('d/m/Y') }}</strong>, o Clube agradece o seu apoio condicional.
+            O(a) torcedor(a) <strong>{{ Auth::user()->name }}</strong>, nascido em <strong>{{ Auth::user()->data_nascimento->format('d/m/Y') }}</strong>, se tornou um torcedor cruzmaltino do Club de Regatas Vasco da Gama no dia <strong>{{ Auth::user()->created_at->format('d/m/Y') }}</strong>, o Clube agradece o seu apoio condicional.
         </div>
         <div class="certificate-footer">
         <img src="{{ asset('img/bandeiras.jpg') }}" alt="Logo Vasco da Gama" style="width: 100px; margin-bottom: 10px;">
