@@ -34,18 +34,25 @@
             font-size: 24px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center; /* Center-align the header content */
             padding: 10px 20px;
+            position: relative;
         }
 
         header img {
             width: 100px;
             height: 80px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .user-dropdown {
-            position: relative;
-            display: inline-block;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            text-align: right;
         }
 
         .dropdown-content {
@@ -101,7 +108,9 @@
         }
 
         h3 {
-            margin: 0 10px;
+            margin: 0;
+            padding: 0;
+            text-align: center; /* Ensure text is centered */
         }
 
         .content {
@@ -206,24 +215,24 @@
                 padding: 8px 16px;
             }
         }
+
+        
     </style>
 </head>
 
 <body>
     <header>
-        <img src="img/cruz-header.png" alt="Imagem Esquerda">
-        <h3>Sócio Gigante Club de Regatas Vasco da Gama</h3>
+        <a href="{{ route('home') }}" style="color: white; text-decoration: none;"> <!-- Add link to home -->
+            <h3>Sócio Gigante Club de Regatas Vasco da Gama</h3>
+        </a>
         <div class="user-dropdown">
-            <span>Olá, {{ Auth::user()->name }}</span><br>
+            <span>Olá, {{ explode(' ', Auth::user()->name)[0] }}</span><br>
             <span>{{ Auth::user()->perfil }}</span>
             <span class="arrow" onclick="toggleDropdown()">▼</span>
             <div class="dropdown-content" id="dropdown-content">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
             </div>
         </div>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
     </header>
 
     <div class="content">

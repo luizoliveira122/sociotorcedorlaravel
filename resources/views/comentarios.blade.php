@@ -30,10 +30,12 @@
             background-color: black;
             color: white;
             text-align: center;
-            padding: 20px 0;
+            padding: 1px 0;
             font-size: 24px;
-            width: 100%;
-            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center-align the header content */
+            padding: 10px 20px;
             position: relative;
         }
 
@@ -45,18 +47,18 @@
             transform: translateY(-50%);
         }
 
-        header img:first-child {
-            left: 20px;
-        }
-
-        header img:last-child {
+        .user-dropdown {
+            position: absolute;
+            top: 50%;
             right: 20px;
+            transform: translateY(-50%);
+            text-align: right;
         }
 
         h3 {
-            margin: 0 120px;
+            margin: 0;
             padding: 0;
-            display: inline-block;
+            text-align: center; /* Ensure text is centered */
         }
 
         .container {
@@ -103,7 +105,32 @@
         .theme-filters {
             text-align: center;
             margin-bottom: 20px;
+            font-family: sans-serif;
         }
+
+        .theme-filters h2 {
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        }
+
+        .theme-select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            font-size: 1rem;
+            color: #333;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='gray' viewBox='0 0 24 24' width='18' height='18' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 18px;
+            transition: border-color 0.3s ease;
+        }
+
 
         .theme-button {
             padding: 10px 20px;
@@ -157,6 +184,49 @@
             color: #990000;
         }
 
+        .dropdown-content {
+            display: none; /* Hide dropdown by default */
+            position: absolute;
+            right: 0;
+            background-color: black;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-content.active {
+            display: block; /* Show dropdown when active */
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background-color: #cc0000; /* Red button background */
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #810000; /* Darker red on hover */
+            color: white;
+        }
+
+        .user-dropdown span {
+            cursor: pointer;
+        }
+
+        .user-dropdown .arrow {
+            margin-left: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .user-dropdown .arrow.active {
+            transform: rotate(180deg); /* Rotate arrow when active */
+        }
+
         @media (max-width: 768px) {
             .container {
                 width: 90%;
@@ -198,37 +268,51 @@
     </style>
 </head>
 <body>
-<header>
-    <h3>Sócio Gigante Club de Regatas Vasco da Gama</h3>
-</header>
+    <header>
+        <a href="{{ route('home') }}" style="color: white; text-decoration: none;"> <!-- Add link to home -->
+            <h3>Sócio Gigante Club de Regatas Vasco da Gama</h3>
+        </a>
+        <div class="user-dropdown">
+            <span>Olá, {{ Auth::user() ? explode(' ', Auth::user()->name)[0] : 'Usuário' }}</span><br> <!-- Display user's first name -->
+            <span>{{ Auth::user() ? Auth::user()->perfil : '' }}</span>
+            <span class="arrow" onclick="toggleDropdown()">▼</span>
+            <div class="dropdown-content" id="dropdown-content">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+        </div>
+    </header>
 
-<div class="container">
-    <h2>Deixe seu Comentário</h2>
-
-    <!-- Filtros de Tema -->
-    <div class="theme-filters">
-        <h2>Filtrar</h2>
-        <a href="{{ route('comments.index', ['theme' => 'contratacoes']) }}" class="theme-button">Contratações</a>
-        <a href="{{ route('comments.index', ['theme' => 'jogos']) }}" class="theme-button">Jogos</a>
-        <a href="{{ route('comments.index', ['theme' => 'outros']) }}" class="theme-button">Outros</a>
-        <a href="{{ route('comments.index') }}" class="theme-button">Todos</a> <!-- Para mostrar todos os comentários -->
-    </div>
+    <div class="container">
+        <h2>Deixe seu Comentário</h2>
 
     <!-- Caixa de Comentário -->
     <form action="{{ route('comments.store') }}" method="POST">
         @csrf
-        <textarea name="text" class="comment-box" rows="4" placeholder="Escreva seu comentário aqui..."></textarea>
-        
-        <!-- Select de Temas -->
+
         <select name="theme" class="comment-box">
             <option value="" disabled selected>Escolha um tema</option>
             <option value="contratacoes">Contratações</option>
             <option value="jogos">Jogos</option>
-            <option value="outros">Outros...</option>
         </select>
+        <textarea name="text" class="comment-box" rows="4" placeholder="Escreva seu comentário aqui..."></textarea>
 
         <button type="submit" class="comment-button">Adicionar Comentário</button>
     </form>
+
+    <div class="theme-filters">
+        <h2>Filtrar</h2>
+        <form action="{{ route('comments.index') }}" method="GET">
+            <select name="theme" class="theme-select" onchange="this.form.submit()">
+                <option value="" disabled selected>Escolha um tema</option>
+                <option value="contratacoes" {{ request('theme') == 'contratacoes' ? 'selected' : '' }}>Contratações</option>
+                <option value="jogos" {{ request('theme') == 'jogos' ? 'selected' : '' }}>Jogos</option>
+                <option value="" {{ request('theme') == null ? 'selected' : '' }}>Todos</option>
+            </select>
+        </form>
+    </div>
 
     <div class="comments-list">
         @foreach ($comments as $comment)
@@ -248,5 +332,13 @@
         @endforeach
     </div>
 </div>
+<script>
+    function toggleDropdown() {
+        const dropdownContent = document.getElementById('dropdown-content');
+        const arrow = document.querySelector('.user-dropdown .arrow');
+        dropdownContent.classList.toggle('active'); // Toggle dropdown visibility
+        arrow.classList.toggle('active'); // Rotate arrow
+    }
+</script>
 </body>
 </html>

@@ -11,7 +11,7 @@ Route::middleware('auth')->group(function () {
     // Páginas que exigem autenticação
     Route::get('/home', function () {
         return view('home'); 
-    });
+    })->name('home');
 
     Route::get('/comentarios', [CommentController::class, 'index'])->name('comments.index');
     Route::post('/comentarios', [CommentController::class, 'store'])->name('comments.store');
