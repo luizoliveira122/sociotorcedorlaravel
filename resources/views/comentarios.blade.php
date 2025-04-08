@@ -318,9 +318,9 @@
     </div>
 
     <div class="comments-list">
-        @foreach ($comments as $comment)
+        @foreach ($comments->sortByDesc('created_at') as $comment) <!-- Sort comments by most recent -->
             <div class="comment">
-                <p class="author">{{ $comment->user->name }} (Tema: {{ $comment->theme }})</p>
+                <p class="author">{{ $comment->user->name }} ({{ $comment->theme }})</p>
                 <p>{{ $comment->text }}</p>
 
                 <!-- Exibe a lixeira apenas para administradores -->

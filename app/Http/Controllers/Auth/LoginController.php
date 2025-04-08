@@ -20,10 +20,17 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/home'); // Redireciona para a página inicial após login
+            if ($request->ajax()) {
+                return response()->json(['success' => true], 200); // Respond with success for AJAX
+            }
+            return redirect()->intended('/home');
         }
 
-        return back()->withErrors(['email' => 'Credenciais inválidas']);
+        if ($request->ajax()) {
+            return response()->json(['error' => 'Email ou senha incorretos'], 401); // Respond with error for AJAX
+        }
+
+        return back()->withErrors(['email' => 'Credenciais inválidas'])->with('error', 'Email ou senha incorretos');
     }
 
     // Realiza o logout
