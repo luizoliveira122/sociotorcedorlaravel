@@ -251,63 +251,7 @@
         </div>
     </div>
 
-    <div class="carousel-container">
-        <div class="carousel" id="carousel">
-            <div class="carousel-card">
-                <img src="img/mosaico2.jpg" alt="Imagem 1">
-                <p>Mosaico da Torcida para os torcedores ilustres do clube e no centro o maior ídolo Roberto Dinamite"</p>
-            </div>
-            <div class="carousel-card">
-                <img src="img/carta.jpg" alt="Imagem 2">
-                <p>A "Resposta Histórica" foi uma carta enviada pelo Vasco em 1924 à Associação Metropolitana de Esportes Atléticos (AMEA), recusando-se a excluir jogadores negros e operários de seu time, defendendo a inclusão e a igualdade no futebol brasileiro.</p>
-            </div>
-            <div class="carousel-card">
-                <img src="img/mosaico.jpg" alt="Imagem 3">
-                <p>Mosaico da Torcida após o clube sofrer discriminação da FEDERAÇÃO com a palavra "Resistiremos"</p>
-            </div>
-            <div class="carousel-card">
-                <img src="img/escudos.jpg" alt="Imagem 4">
-                <p>Gerações de escudos do clube</p>
-            </div>
-            <div class="carousel-card">
-                <img src="img/estadio.jpg" alt="Imagem 1">
-                <p>Estádio de São Januário"</p>
-            </div>
-        </div>
-    </div>
-
     <script>
-        const carousel = document.getElementById('carousel');
-        const slides = document.querySelectorAll('.carousel-card');
-        const totalSlides = slides.length;
-        const visibleSlides = 3;
-        let index = 0;
-
-        for (let i = 0; i < visibleSlides; i++) {
-            const clone = slides[i].cloneNode(true);
-            carousel.appendChild(clone);
-        }
-
-        function showSlide() {
-            carousel.style.transform = `translateX(${-index * (100 / visibleSlides)}%)`;
-            carousel.style.transition = 'transform 0.5s ease-in-out';
-
-            if (index >= totalSlides) {
-                setTimeout(() => {
-                    carousel.style.transition = 'none';
-                    index = 0;
-                    carousel.style.transform = `translateX(0)`;
-                }, 500);
-            }
-        }
-
-        function nextSlide() {
-            index++;
-            showSlide();
-        }
-
-        setInterval(nextSlide, 3000);
-
         function toggleDropdown() {
             const dropdownContent = document.getElementById('dropdown-content');
             const arrow = document.querySelector('.user-dropdown .arrow');
