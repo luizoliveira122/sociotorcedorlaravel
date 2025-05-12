@@ -126,7 +126,7 @@
             <!-- Link para recuperação de senha -->
             <a href="{{ route('password.request') }}" class="forgot-password-link">Esqueceu sua senha?</a>
             <!-- Link para registro -->
-            <a href="{{ route('register') }}" class="register-link">Seja Sócio</a>
+            <a href="{{ route('register') }}" class="register-link">Cadastre-se</a>
         </div>        
         <div class="image-container">
             <img src="img/login.png" alt="Side Image"> 
