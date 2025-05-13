@@ -223,9 +223,6 @@
             <span class="arrow" onclick="toggleDropdown()">▼</span>
             <div class="dropdown-content" id="dropdown-content">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
-                @if(Auth::user()->perfil === 'administrador') <!-- Show admin panel link only for administrators -->
-                    <a href="{{ route('admin.dashboard') }}">Painel de Controle</a>
-                @endif
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
