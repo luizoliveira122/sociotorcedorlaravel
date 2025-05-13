@@ -51,9 +51,3 @@ Route::middleware('guest')->group(function () {
         return view('registrar');
     });
 });
-
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard'); // Render the admin dashboard view
-    })->name('admin.dashboard');
-});
