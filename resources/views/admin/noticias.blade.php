@@ -66,9 +66,6 @@
             cursor: pointer;
         }
 
-        form button:hover {
-            background-color: #810000;
-        }
     </style>
 </head>
 <body>
@@ -76,7 +73,7 @@
         <h3>Painel de Controle - Notícias</h3>
     </header>
     <div class="container">
-        <h1>Gerenciar Notícias</h1>
+        <h1>Adicionar Postagens</h1>
         <form action="{{ route('publicacoes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <label>Título:</label>
@@ -89,10 +86,13 @@
             <input type="file" name="foto" accept="image/*"><br>
 
             <button type="submit">Publicar</button>
-            <button type="button" style="background-color: #cc0000; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-                <a href="{{ route('admin.dashboard') }}" style="text-decoration: none; color: white;">Voltar</a>
+            <button type="button" onclick="window.location.href='{{ route('admin.dashboard') }}'" style="background-color: #cc0000; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                Voltar
             </button>
         </form>
+    </div>
+    <div class="container">
+        <h1>Postagens</h1>
     </div>
 </body>
 </html>
