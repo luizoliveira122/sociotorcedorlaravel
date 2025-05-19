@@ -223,6 +223,9 @@
             <span class="arrow" onclick="toggleDropdown()">▼</span>
             <div class="dropdown-content" id="dropdown-content">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
+                @if(Auth::user()->perfil === 'administrador') <!-- Show admin panel link only for administrators -->
+                    <a href="{{ route('admin.dashboard') }}">Painel de Controle</a>
+                @endif
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
@@ -248,7 +251,13 @@
         </div>
     </div>
 
-    <script>
+    <div class="content">
+        <div class="card" style="width: 90%;">
+            <h4>Últimas Postagens</h4>
+        </div>
+    </div>
+
+    <script>;
         function toggleDropdown() {
             const dropdownContent = document.getElementById('dropdown-content');
             const arrow = document.querySelector('.user-dropdown .arrow');

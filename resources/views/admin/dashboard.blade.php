@@ -77,9 +77,9 @@
     <div class="container">
     <h1>Bem-vindo, {{ Auth::user()->name }}!</h1>
     <div class="menu">
-        <a href="#">Gerenciar Carrossel</a>
-        <a href="{{ route('home') }}">Voltar</a>
-    </div>
+    <a href="{{ route('admin.noticias') }}">Gerenciar Notícias</a>
+    <a href="{{ route('home') }}">Voltar</a>
+</div>
 </div>
 </body>
 </html>
