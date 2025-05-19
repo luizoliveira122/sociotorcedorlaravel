@@ -82,9 +82,6 @@
             <label>Texto:</label>
             <textarea name="texto" required></textarea><br>
 
-            <label>Foto (opcional):</label>
-            <input type="file" name="foto" accept="image/*"><br>
-
             <button type="submit">Publicar</button>
             <button type="button" onclick="window.location.href='{{ route('admin.dashboard') }}'" style="background-color: #cc0000; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
                 Voltar

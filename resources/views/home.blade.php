@@ -257,13 +257,24 @@
         </div>
     </div>
 
-    <script>;
+    <script>
         function toggleDropdown() {
             const dropdownContent = document.getElementById('dropdown-content');
             const arrow = document.querySelector('.user-dropdown .arrow');
             dropdownContent.classList.toggle('active');
             arrow.classList.toggle('active');
         }
+
+        document.addEventListener('click', function (event) {
+            const dropdownContent = document.getElementById('dropdown-content');
+            const arrow = document.querySelector('.user-dropdown .arrow');
+            const isClickInside = document.querySelector('.user-dropdown').contains(event.target);
+
+            if (!isClickInside) {
+                dropdownContent.classList.remove('active');
+                arrow.classList.remove('active');
+            }
+        });
     </script>
 
 </body>

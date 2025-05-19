@@ -320,7 +320,7 @@
     <div class="comments-list">
         @foreach ($comments->sortByDesc('created_at') as $comment) <!-- Sort comments by most recent -->
             <div class="comment">
-                <p class="author">{{ $comment->user->name }} ({{ $comment->theme }})</p>
+                <p class="author">{{ $comment->user->name }}</p>
                 <p>{{ $comment->text }}</p>
 
                 <!-- Exibe a lixeira apenas para administradores -->
@@ -342,6 +342,17 @@
         dropdownContent.classList.toggle('active'); // Toggle dropdown visibility
         arrow.classList.toggle('active'); // Rotate arrow
     }
+
+    document.addEventListener('click', function (event) {
+            const dropdownContent = document.getElementById('dropdown-content');
+            const arrow = document.querySelector('.user-dropdown .arrow');
+            const isClickInside = document.querySelector('.user-dropdown').contains(event.target);
+
+            if (!isClickInside) {
+                dropdownContent.classList.remove('active');
+                arrow.classList.remove('active');
+            }
+        });
 </script>
 </body>
 </html>

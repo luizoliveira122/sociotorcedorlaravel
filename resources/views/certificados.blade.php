@@ -101,14 +101,14 @@
         }
 
         .certificate-container {
-            margin: 50px auto;
-            width: 90%; /* Increase width */
-            max-width: 1000px; /* Increase max width */
+            margin: 60px auto;
+            width: 90%; 
+            max-width: 1000px; 
             background-color:rgb(253, 253, 253);
-            border: 5px solid black; /* Change border color to black */
-            padding: 50px; /* Increase padding */
+            border: 30px solid rgb(66, 36, 1); 
+            padding: 50px; 
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgb(3, 3, 3);
         }
 
         .certificate-title {
@@ -173,14 +173,24 @@
     </div>
 
     <script>
-        setInterval(nextSlide, 3000);
 
-        function toggleDropdown() {
+    function toggleDropdown() {
             const dropdownContent = document.getElementById('dropdown-content');
             const arrow = document.querySelector('.user-dropdown .arrow');
-            dropdownContent.classList.toggle('active');
-            arrow.classList.toggle('active');
+            dropdownContent.classList.toggle('active'); // Toggle dropdown visibility
+            arrow.classList.toggle('active'); // Rotate arrow
         }
+
+        document.addEventListener('click', function (event) {
+                const dropdownContent = document.getElementById('dropdown-content');
+                const arrow = document.querySelector('.user-dropdown .arrow');
+                const isClickInside = document.querySelector('.user-dropdown').contains(event.target);
+
+                if (!isClickInside) {
+                    dropdownContent.classList.remove('active');
+                    arrow.classList.remove('active');
+                }
+        });
     </script>
 </body>
 </html>
