@@ -11,7 +11,8 @@
             padding: 0;
             background-color: white;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         body::before {
@@ -66,6 +67,25 @@
             cursor: pointer;
         }
 
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            form input, form textarea {
+                font-size: 1em;
+            }
+
+            form button {
+                width: 100%;
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -90,6 +110,23 @@
     </div>
     <div class="container">
         <h1>Postagens</h1>
+        @if(session('success'))
+            <p style="color: green;">{{ session('success') }}</p>
+        @endif
+        @foreach($noticias as $noticia)
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+            <h3>{{ $noticia->titulo }}</h3>
+            <p>{{ $noticia->texto }}</p>
+            <small>Publicado em: {{ $noticia->created_at->format('d/m/Y H:i') }}</small>
+            <form action="{{ route('publicacoes.destroy', $noticia->id) }}" method="POST" style="margin-top: 10px;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" style="background-color: red; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                    Excluir
+                </button>
+            </form>
+        </div>
+    @endforeach
     </div>
 </body>
 </html>

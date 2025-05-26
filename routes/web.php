@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NoticiaController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', function () {
@@ -67,3 +68,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::post('/admin/noticias', [PublicacaoController::class, 'store'])->name('publicacoes.store');
 });
+
+Route::post('/noticias', [NoticiaController::class, 'store'])->name('publicacoes.store');
+Route::get('/noticias', [NoticiaController::class, 'index'])->name('admin.noticias');
+Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('publicacoes.destroy');
+Route::get('/', [NoticiaController::class, 'ultimasPostagens'])->name('home');
+Route::get('/admin/noticias', [NoticiaController::class, 'index'])->name('admin.noticias');

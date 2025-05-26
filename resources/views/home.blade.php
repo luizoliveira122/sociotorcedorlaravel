@@ -208,6 +208,41 @@
             }
         }
 
+            .postagens-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .postagem-card {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        width: 300px;
+        text-align: center;
+    }
+
+    .postagem-card h3 {
+        color:rgb(0, 0, 0);
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .postagem-card p {
+        font-size: 0.9em;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .postagem-card small {
+        font-size: 0.8em;
+        color: #666;
+    }
+    
         
     </style>
 </head>
@@ -252,8 +287,15 @@
     </div>
 
     <div class="content">
-        <div class="card" style="width: 90%;">
-            <h4>Últimas Postagens</h4>
+    <div class="card" style="width: 90%;">
+        <h4>Últimas Postagens</h4>
+        <div class="postagens-container">
+            @foreach($ultimasNoticias as $noticia)
+                <div class="postagem-card">
+                    <h3>{{ $noticia->titulo }}</h3>
+                    <p>{{ Str::limit($noticia->texto, 100) }}</p>
+                </div>
+            @endforeach
         </div>
     </div>
 
