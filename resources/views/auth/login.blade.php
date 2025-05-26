@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sócio Gigante</title>
+    <title>Club de Regatas Vasco da Gama</title>
     <style>
         body {
             display: flex;

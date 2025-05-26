@@ -271,7 +271,7 @@
 <body>
     <header>
         <a href="{{ route('home') }}" style="color: white; text-decoration: none;"> <!-- Add link to home -->
-            <h3>Sócio Gigante Club de Regatas Vasco da Gama</h3>
+            <h3>Club de Regatas Vasco da Gama</h3>
         </a>
         <div class="user-dropdown">
             <span>Olá, {{ Auth::user() ? explode(' ', Auth::user()->name)[0] : 'Usuário' }}</span><br> <!-- Display user's first name -->
@@ -286,8 +286,9 @@
         </div>
     </header>
 
-    <div class="container">
-        <h2>Deixe seu Comentário</h2>
+    <div class="container" style="padding: 0; border-radius: 8px; overflow: hidden;">
+    <img src="{{ asset('img/torcida.jpg') }}" alt="Banner de Comentários" style="width: 100%; height: 200px; object-fit: cover; display: block; margin: 0;">
+    <h2 style="margin-top: 20px;">Deixe seu Comentário</h2>
 
     <!-- Caixa de Comentário -->
     <form action="{{ route('comments.store') }}" method="POST">
@@ -303,7 +304,13 @@
 
         <button type="submit" class="comment-button">Adicionar Comentário</button>
     </form>
-
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>        
     <div class="theme-filters">
         <h2>Filtrar</h2>
         <form action="{{ route('comments.index') }}" method="GET">

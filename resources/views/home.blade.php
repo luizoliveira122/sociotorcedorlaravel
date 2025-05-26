@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sócio Gigante - Vasco da Gama</title>
+    <title>Club de Regatas Vasco da Gama</title>
     <style>
         body {
             margin: 0;
@@ -114,9 +114,10 @@
 
         .card {
             background-color: #fffefe;
-            padding: 20px;
+            padding: 20px; /* Espaçamento interno */
+            margin: 20px; /* Espaçamento externo */
             border-radius: 8px;
-            width: 45%;
+            width: 90%; /* Ajuste para ocupar 90% da largura */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
             text-align: center;
             border: 2px solid black;
@@ -125,6 +126,7 @@
         .card h4 {
             margin-bottom: 15px;
             font-size: 22px;
+            
         }
 
         .card button {
@@ -209,39 +211,47 @@
         }
 
             .postagens-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-        margin-top: 20px;
-    }
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
 
-    .postagem-card {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 15px;
-        width: 300px;
-        text-align: center;
-    }
+        .postagem-card {
+            background-color:rgb(233, 233, 233); /* Fundo vermelho */
+            border: 1px solidrgb(196, 195, 195); /* Borda mais escura */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            width: 300px;
+            text-align: center;
+            color: white; /* Texto branco */
+            transition: transform 0.3s, box-shadow 0.3s; /* Suaviza o efeito de hover */
+        }
 
-    .postagem-card h3 {
-        color:rgb(0, 0, 0);
-        font-size: 1.2em;
-        margin-bottom: 10px;
-    }
+        .postagem-card:hover {
+            transform: scale(1.05); /* Aumenta o tamanho do card */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta a sombra */
+            cursor: pointer; /* Mostra o cursor de clique */
+        }
 
-    .postagem-card p {
-        font-size: 0.9em;
-        color: #333;
-        margin-bottom: 10px;
-    }
+        .postagem-card h3 {
+            color: rgb(180, 2, 2); /* Título em branco */
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
 
-    .postagem-card small {
-        font-size: 0.8em;
-        color: #666;
-    }
+        .postagem-card p {
+            font-size: 0.9em;
+            color:rgb(0, 0, 0); /* Texto em cinza claro */
+            margin-bottom: 10px;
+        }
+
+        .postagem-card small {
+            font-size: 0.8em;
+            color: #f1f1f1; /* Texto menor em cinza claro */
+        }
     
         
     </style>
@@ -250,7 +260,7 @@
 <body>
     <header>
         <a href="{{ route('home') }}" style="color: white; text-decoration: none;"> <!-- Add link to home -->
-            <h3>Sócio Gigante Club de Regatas Vasco da Gama</h3>
+            <h3>Club de Regatas Vasco da Gama</h3>
         </a>
         <div class="user-dropdown">
             <span>Olá, {{ explode(' ', Auth::user()->name)[0] }}</span><br>
@@ -271,7 +281,7 @@
     <div class="content">
         <div class="card">
             <h4>Gerar Certificado</h4>
-            <p>Crie e adiquira seu certificado de sócio gigante do Vasco da Gama.</p>
+            <p>Crie e adiquira seu certificado de torcedor honorário do Club de Regatas Vasco da Gama</p>
             <a href="{{ route('certificados.index') }}" class="btn-certificado"> <!-- Add link to Certificados -->
                 <button>Gerar Certificado</button>
             </a>
@@ -291,7 +301,7 @@
         <h4>Últimas Postagens</h4>
         <div class="postagens-container">
             @foreach($ultimasNoticias as $noticia)
-                <div class="postagem-card">
+                <div class="postagem-card" onclick="abrirPopup(`{{ addslashes($noticia->titulo) }}`, `{{ addslashes($noticia->texto) }}`)">
                     <h3>{{ $noticia->titulo }}</h3>
                     <p>{{ Str::limit($noticia->texto, 100) }}</p>
                 </div>
@@ -317,8 +327,29 @@
                 arrow.classList.remove('active');
             }
         });
+
+            function abrirPopup(titulo, texto) {
+            document.getElementById('popup-titulo').textContent = titulo;
+            document.getElementById('popup-texto').textContent = texto;
+            document.getElementById('noticia-popup').style.display = 'block';
+            document.getElementById('popup-overlay').style.display = 'block';
+        }
+
+        function fecharPopup() {
+            document.getElementById('noticia-popup').style.display = 'none';
+            document.getElementById('popup-overlay').style.display = 'none';
+        }
     </script>
 
+    <!-- Popup para exibir a notícia completa -->
+    <div id="noticia-popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; width: 80%; max-width: 600px; text-align: center;">
+        <h3 id="popup-titulo" style="margin-top: 0; color: #cc0000;"></h3>
+        <p id="popup-texto" style="color: #333; text-align: center;"></p>
+        <button onclick="fecharPopup()" style="background-color: #cc0000; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; display: block; margin: 20px auto;">Fechar</button>
+    </div>
+
+    <!-- Overlay para o popup -->
+    <div id="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" onclick="fecharPopup()"></div>
 </body>
 
 </html>

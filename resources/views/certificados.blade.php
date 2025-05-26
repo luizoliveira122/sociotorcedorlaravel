@@ -105,7 +105,7 @@
             width: 90%; 
             max-width: 1000px; 
             background-color:rgb(253, 253, 253);
-            border: 30px solid rgb(66, 36, 1); 
+            border: 15px solid rgb(88, 88, 88); 
             padding: 50px; 
             text-align: center;
             box-shadow: 0 4px 8px rgb(3, 3, 3);
@@ -139,7 +139,7 @@
 <body>
 <header>
         <a href="{{ route('home') }}" style="color: white; text-decoration: none;"> <!-- Add link to home -->
-            <h3>Sócio Gigante Club de Regatas Vasco da Gama</h3>
+            <h3>Club de Regatas Vasco da Gama</h3>
         </a>
         <div class="user-dropdown">
             <span>Olá, {{ explode(' ', Auth::user()->name)[0] }}</span><br>
@@ -166,7 +166,7 @@
             <br>
             <h3 class="vermelho">"NUNCA VÃO ENTENDER ESSE AMOR"</h3>
             <br>
-            Clube de Regatas Vasco da Gama - Sócio Gigante
+            Clube de Regatas Vasco da Gama 
             <br>
             Av. Roberto Dinamite, 10 - Vasco da Gama, Rio de Janeiro - RJ
         </div>
