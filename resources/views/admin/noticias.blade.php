@@ -90,7 +90,9 @@
 </head>
 <body>
     <header style="background-color: black; color: white; padding: 10px 20px; text-align: center;">
-        <h3>Painel de Controle - Notícias</h3>
+        <a href="{{ route('home') }}" style="color: white; text-decoration: none;"> <!-- Add link to home -->
+            <h3>Club de Regatas Vasco da Gama</h3>
+        </a>
     </header>
     <div class="container">
         <h1>Adicionar Postagens</h1>
@@ -103,13 +105,13 @@
             <textarea name="texto" required></textarea><br>
 
             <button type="submit">Publicar</button>
-            <button type="button" onclick="window.location.href='{{ route('admin.dashboard') }}'" style="background-color: #cc0000; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+            <button type="button" onclick="window.location.href='{{ route('home') }}'" style="background-color: #cc0000; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
                 Voltar
             </button>
         </form>
     </div>
     <div class="container">
-        <h1>Postagens</h1>
+        <h1>Todas Postagens</h1>
         @if(session('success'))
             <p style="color: green;">{{ session('success') }}</p>
         @endif

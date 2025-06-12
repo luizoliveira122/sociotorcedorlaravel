@@ -105,7 +105,7 @@
             width: 90%; 
             max-width: 1000px; 
             background-color:rgb(253, 253, 253);
-            border: 15px solid rgb(88, 88, 88); 
+            border: 5px solid rgb(0, 0, 0); 
             padding: 50px; 
             text-align: center;
             box-shadow: 0 4px 8px rgb(3, 3, 3);
