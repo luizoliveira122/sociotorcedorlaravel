@@ -300,12 +300,16 @@
     <div class="card" style="width: 90%;">
         <h4>Últimas Postagens</h4>
         <div class="postagens-container">
-            @foreach($ultimasNoticias as $noticia)
-                <div class="postagem-card" onclick="abrirPopup(`{{ addslashes($noticia->titulo) }}`, `{{ addslashes($noticia->texto) }}`)">
-                    <h3>{{ $noticia->titulo }}</h3>
-                    <p>{{ Str::limit($noticia->texto, 100) }}</p>
-                </div>
-            @endforeach
+            @if(isset($ultimasNoticias) && count($ultimasNoticias))
+                @foreach($ultimasNoticias as $noticia)
+                    <div class="postagem-card" onclick="abrirPopup(`{{ addslashes($noticia->titulo) }}`, `{{ addslashes($noticia->texto) }}`)">
+                        <h3>{{ $noticia->titulo }}</h3>
+                        <p>{{ Str::limit($noticia->texto, 100) }}</p>
+                    </div>
+                @endforeach
+            @else
+                <p style="color:black;">Nenhuma notícia encontrada.</p>
+            @endif
         </div>
     </div>
 
