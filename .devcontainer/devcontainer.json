@@ -1,0 +1,12 @@
+{
+  "name": "Laravel Dev (PostgreSQL)",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "composer install && cp .env.example .env && php artisan key:generate && php artisan migrate",
+  "forwardPorts": [8000],
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "remoteUser": "vscode"
+}
